@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lailaba-cli"
+version = "0.6.0"
+description = "A permission-aware autonomous terminal agent with a Textual TUI and configurable OpenAI-compatible providers"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+dependencies = ["httpx==0.28.1", "textual>=1.0.0,<2.0.0"]
+
+[project.optional-dependencies]
+test = ["pytest==8.4.1", "pytest-asyncio==1.1.0"]
+
+[project.scripts]
+lailaba-cli = "lailaba_cli.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.setuptools.package-data]
+lailaba_cli = ["builtin_skills/*/SKILL.md"]
